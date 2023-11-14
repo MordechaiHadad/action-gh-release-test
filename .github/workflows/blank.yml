@@ -27,4 +27,4 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: Release.txt
-          body_path: CHANGELOG.txt
+          body_path: CHANGELOG.md
