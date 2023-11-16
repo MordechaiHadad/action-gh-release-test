@@ -1,2 +1,22 @@
 name: Matrix
 on: [push, pull_request]
+
+jobs:
+  unix:
+      strategy:
+        matrix:
+          os: ['macos-latest', 'ubuntu-latest']
+      runs-on: ${{ matrix.os }}
+      steps:
+        - name: Print system info
+          run: uname -a >> test.txt
+        - name: Upload file
+          uses: actions/upload-artifact@v2
+          with:
+            name: "Cool file ${{matrix.os}}"
+            path: "test.txt"
+            if-no-files-found: error
+            retention-days: 1
+
+
+
