@@ -59,7 +59,6 @@ jobs:
         run: | 
           echo $PWD
           ls
-          find -type f -name CHANGELOG.md
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
