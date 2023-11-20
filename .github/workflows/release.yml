@@ -1,0 +1,41 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: test
+        run: echo "hi" >> yo.txt
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          path: yo.txt
+  
+  build-1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build again
+        run: echo "brooo :(" >> damn.txt
+      - name: Upload
+        uses: actions/upload-artifact@v2
+        with:
+          path: damn.txt
+
+  release:
+    needs: [build, build-1]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v2
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: |
+            *.txt
