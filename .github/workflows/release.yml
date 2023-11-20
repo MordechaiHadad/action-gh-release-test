@@ -37,8 +37,6 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           path: artifacts
-      - name: List files
-        run: ls -la artifacts/
       - name: Generate a changelog
         uses: orhun/git-cliff-action@v2
         with:
@@ -54,7 +52,9 @@ jobs:
             zip -r "${base}.zip" "$dir"
           done
       - name: Get current dir
-        run: echo $PWD
+        run: | 
+          echo $PWD
+          ls
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
