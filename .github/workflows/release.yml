@@ -39,6 +39,13 @@ jobs:
           path: artifacts
       - name: List files
         run: ls -la artifacts/
+      - name: Generate a changelog
+        uses: orhun/git-cliff-action@v2
+        with:
+          config: cliff.toml
+          args: --verbose
+        env:
+          OUTPUT: CHANGELOG.md
       - name: Zip artifacts
         run: |
           cd artifacts
@@ -50,5 +57,6 @@ jobs:
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
+          body_path: CHANGELOG.md
           files: |
             ./artifacts/*.zip
