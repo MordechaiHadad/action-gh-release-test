@@ -53,6 +53,8 @@ jobs:
             base=$(basename "$dir")
             zip -r "${base}.zip" "$dir"
           done
+      - name: Get current dir
+        run: echo $PWD
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
