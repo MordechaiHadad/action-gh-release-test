@@ -24,6 +24,7 @@ jobs:
           fi
 
   build:
+    needs: check-version
     runs-on: ubuntu-latest
     steps:
       - name: test
@@ -35,6 +36,7 @@ jobs:
           path: yo.txt
   
   build-1:
+    needs: check-version
     runs-on: ubuntu-latest
     steps:
       - name: Build again
