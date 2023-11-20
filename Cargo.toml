@@ -1,0 +1,10 @@
+[package]
+name = "bob-nvim"
+edition = "2021"
+version = "2.7.0"
+description = "A version manager for neovim"
+readme = "README.md"
+keywords = ["neovim", "version-manager"]
+categories = ["command-line-utilities"]
+license = "MIT"
+repository = "https://github.com/MordechaiHadad/bob"
